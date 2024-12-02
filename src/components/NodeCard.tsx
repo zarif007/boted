@@ -13,7 +13,7 @@ const NodeCard = ({
   return (
     <div
       className={cn(
-        "rounded-md cursor-pointer bg-white border-2 border-separate w-[150px] text-xs gap-1 flex flex-col",
+        "rounded-md cursor-pointer bg-white border-2 border-separate w-[350px] text-xs gap-1 flex flex-col",
         isSelected && "border-gray-500"
       )}
     >

@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export enum taskType {
   LAUNCH_BROWSER = "LAUNCH_BROWSER",
+  PAGE_TO_HTML = "PAGE_TO_HTML",
 }
 
 export enum taskParamType {
   STRING = "STRING",
+  BROWSER_INSTANCE = "BROWSER_INSTANCE",
 }
 
 export interface taskParam {

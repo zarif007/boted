@@ -23,18 +23,19 @@ const fitViewOptions = { padding: 6 };
 const FlowEditor = ({ workflowId }: { workflowId: string }) => {
   const [nodes, setNodes, onNodesChange] = useNodesState([
     CreateFlowNode(taskType.LAUNCH_BROWSER),
+    CreateFlowNode(taskType.PAGE_TO_HTML),
   ]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   return (
-    <div className="h-screen w-full text-black">
+    <div className="h-screen w-full text-black dark:text-white">
       <ReactFlow
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         fitView
-        className="bg-white"
+        className="bg-white dark:bg-black"
         proOptions={{ hideAttribution: true }}
         fitViewOptions={fitViewOptions}
         nodeTypes={nodeTypes}
@@ -45,12 +46,13 @@ const FlowEditor = ({ workflowId }: { workflowId: string }) => {
           showFitView={true}
           showInteractive={true}
           fitViewOptions={fitViewOptions}
+          className="!text-black"
         />
         <Background
           variant={BackgroundVariant.Dots}
           gap={12}
           size={1}
-          className="!bg-gray-50"
+          className="!bg-white dark:!bg-black"
         />
       </ReactFlow>
     </div>

@@ -3,6 +3,7 @@ import { taskParam } from "@/types/task";
 import { Handle, Position } from "@xyflow/react";
 import React from "react";
 import NodeParamField from "./NodeParamField";
+import { ColorForHandle } from "./common";
 
 const NodeInput = ({ input, nodeId }: { input: taskParam; nodeId: string }) => {
   return (
@@ -11,10 +12,11 @@ const NodeInput = ({ input, nodeId }: { input: taskParam; nodeId: string }) => {
       {!input.hideHandle && (
         <Handle
           id={input.name}
-          type={input.type === "BROWSER_INSTANCE" ? "target" : "source"}
+          type="target"
           position={Position.Left}
           className={cn(
-            "!bg-black dark:!bg-white !border-2 !border-background !-left-2 !w-4 !h-4"
+            "!bg-black dark:!bg-white !border-2 !border-background !-left-2 !w-4 !h-4",
+            ColorForHandle[input.type]
           )}
         />
       )}

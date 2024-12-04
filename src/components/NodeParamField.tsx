@@ -3,6 +3,7 @@ import React, { useCallback } from "react";
 import StringParam from "./param/StringParam";
 import { useReactFlow } from "@xyflow/react";
 import { ICustomNode } from "@/types/customNode";
+import BrowserInstanceParam from "./param/BrowserInstanceParam";
 
 const NodeParamField = ({
   input,
@@ -31,6 +32,14 @@ const NodeParamField = ({
     case taskParamType.STRING:
       return (
         <StringParam
+          input={input}
+          value={value}
+          updateNodeParamValue={updateNodeParamValue}
+        />
+      );
+    case taskParamType.BROWSER_INSTANCE:
+      return (
+        <BrowserInstanceParam
           input={input}
           value={value}
           updateNodeParamValue={updateNodeParamValue}

@@ -6,6 +6,8 @@ import { ICustomNodeData } from "@/types/customNode";
 import { taskRegistry } from "@/lib/workflow/task/registry";
 import NodeInputs from "./NodeInputs";
 import NodeInput from "./NodeInput";
+import NodeOutputs from "./NodeOutputs";
+import NodeOutput from "./NodeOutput";
 
 const NodeComponent = memo((props: NodeProps) => {
   const nodeData = props.data as ICustomNodeData;
@@ -18,6 +20,11 @@ const NodeComponent = memo((props: NodeProps) => {
           <NodeInput key={index} input={input} nodeId={props.id} />
         ))}
       </NodeInputs>
+      <NodeOutputs>
+        {task.outputs.map((output, index) => (
+          <NodeOutput key={index} output={output} />
+        ))}
+      </NodeOutputs>
     </NodeCard>
   );
 });

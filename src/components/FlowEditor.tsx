@@ -30,12 +30,11 @@ const edgeTypes = {
   default: DeletableEdge,
 };
 
-const fitViewOptions = { padding: 5 };
+const fitViewOptions = { padding: 4 };
 
 const FlowEditor = ({ workflowId }: { workflowId: string }) => {
   const [nodes, setNodes, onNodesChange] = useNodesState<ICustomNode>([
     CreateFlowNode(taskType.LAUNCH_BROWSER),
-    CreateFlowNode(taskType.PAGE_TO_HTML),
   ]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
   const { screenToFlowPosition, updateNodeData } = useReactFlow();

@@ -10,3 +10,8 @@ export interface ICustomNodeData {
 export interface ICustomNode extends Node {
   data: ICustomNodeData;
 }
+
+export interface ICustomNodeMissingInputs {
+  nodeId: string;
+  inputs: string[];
+}

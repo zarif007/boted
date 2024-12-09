@@ -5,6 +5,7 @@ import {
 } from "@/types/workflow";
 import { Edge, getIncomers } from "@xyflow/react";
 import { taskRegistry } from "./task/registry";
+import { toast } from "sonner";
 
 export enum flowTotExecutionPlanValidationError {
   "NO_ENTRY_POINT",
@@ -66,7 +67,7 @@ export const flowExecutionPlan = (nodes: ICustomNode[], edges: Edge[]) => {
       if (invalidInputs.length) {
         const incomers = getIncomers(currentNode, nodes, edges);
         if (incomers.every((incomer) => planned.has(incomer.id))) {
-          console.error("Invalid inputs", currentNode.id, invalidInputs);
+          toast.error("Invalid inputs");
           inputsWithErrors.push({
             nodeId: currentNode?.id ?? "",
             inputs: invalidInputs,

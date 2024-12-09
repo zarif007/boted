@@ -6,6 +6,7 @@ import { ICustomNode } from "@/types/customNode";
 import { useReactFlow } from "@xyflow/react";
 import { useCallback } from "react";
 import useFlowValidation from "./useFlowValidation";
+import { toast } from "sonner";
 
 const useExecutionPlan = () => {
   const { toObject } = useReactFlow();
@@ -15,14 +16,14 @@ const useExecutionPlan = () => {
     (error: any) => {
       switch (error.type) {
         case flowTotExecutionPlanValidationError.NO_ENTRY_POINT:
-          console.error("No Entry point");
+          toast.error("No Entry point");
           break;
         case flowTotExecutionPlanValidationError.INVALID_INPUTS:
-          console.error("Not all inputs are valid");
+          toast.error("Not all inputs are valid");
           setInvalidInputs(error.invalidElements);
           break;
         default:
-          console.error("Something went wrong");
+          toast.error("Something went wrong");
           break;
       }
     },

@@ -12,32 +12,51 @@ const ExecuteButton = ({ workflowId }: { workflowId: string }) => {
   const generate = useExecutionPlan();
 
   const mutation = useMutation({
-    mutationFn: (data: { workflowId: string; flowDefinition: string }) =>
-      RunWorkflow(data),
-    onSuccess: () => {
-      toast.success("Execution started");
+    mutationFn: (data: { workflowId: string; flowDefinition: string }) => {
+      console.log("Mutation called with:", data);
+      return RunWorkflow(data);
     },
-    onError: () => {
+    onSuccess: () => {
+      console.log("Workflow execution ended successfully");
+      toast.success("Execution Ended");
+    },
+    onError: (error) => {
+      console.error("Workflow execution failed:", error);
       toast.error("Execution went wrong");
     },
   });
 
+  const handleExecute = () => {
+    try {
+      const plan = generate();
+      if (!plan) {
+        toast.error("Failed to generate execution plan");
+        return;
+      }
+
+      const flowObj = toObject();
+      if (!flowObj) {
+        toast.error("Failed to get flow definition");
+        return;
+      }
+      toast.success("Execution started");
+      mutation.mutate({
+        workflowId,
+        flowDefinition: JSON.stringify(flowObj),
+      });
+    } catch (error) {
+      console.error("Error in execute handler:", error);
+      toast.error("Failed to prepare workflow execution");
+    }
+  };
+
   return (
     <div>
       <Button
-        variant={"outline"}
+        variant="outline"
         className="flex items-center gap-2"
         disabled={mutation.isPending}
-        onClick={() => {
-          const plan = generate();
-          if (!plan) {
-            return;
-          }
-          mutation.mutate({
-            workflowId: workflowId,
-            flowDefinition: JSON.stringify(toObject()),
-          });
-        }}
+        onClick={handleExecute}
       >
         <PlayIcon size={16} className="stroke-blue-500" />
         Execute

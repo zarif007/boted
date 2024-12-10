@@ -13,7 +13,6 @@ const NodeCard = ({
 }) => {
   const { invalidInputs } = useFlowValidation();
   const hasInValidInputs = invalidInputs.some((node) => node.nodeId === nodeId);
-  console.log(invalidInputs);
   return (
     <div
       className={cn(

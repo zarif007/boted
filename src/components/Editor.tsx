@@ -7,12 +7,14 @@ import Topbar from "./Topbar";
 import TaskMenu from "./TaskMenu";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FlowValidationContextProvider } from "@/context/FlowValidationContecxt";
+import { Toaster } from "sonner";
 
 const Editor = ({ workflowId }: { workflowId: string }) => {
   const queryClient = new QueryClient();
 
   return (
     <FlowValidationContextProvider>
+      <Toaster richColors />
       <QueryClientProvider client={queryClient}>
         <ReactFlowProvider>
           <div className="flex flex-col h-full w-full overflow-hidden">

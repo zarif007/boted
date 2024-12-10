@@ -3,7 +3,7 @@ import {
   IWorkflowExecutionPlan,
   IWorkflowExecutionPlanPhase,
 } from "@/types/workflow";
-import { Edge, getIncomers } from "@xyflow/react";
+import { Edge } from "@xyflow/react";
 import { taskRegistry } from "./task/registry";
 import { toast } from "sonner";
 
@@ -138,4 +138,24 @@ const getInvalidInputs = (
   }
 
   return invalidInputs;
+};
+
+const getIncomers = (
+  node: ICustomNode,
+  nodes: ICustomNode[],
+  edges: Edge[]
+) => {
+  if (!node.id) {
+    return [];
+  }
+
+  const inComersIds = new Set();
+
+  edges.forEach((edge) => {
+    if (edge.target === node.id) {
+      inComersIds.add(edge.source);
+    }
+  });
+
+  return nodes.filter((node) => inComersIds.has(node.id));
 };

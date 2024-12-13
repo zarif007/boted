@@ -17,11 +17,9 @@ const ExecuteButton = ({ workflowId }: { workflowId: string }) => {
       return RunWorkflow(data);
     },
     onSuccess: () => {
-      console.log("Workflow execution ended successfully");
       toast.success("Execution Ended");
     },
     onError: (error) => {
-      console.error("Workflow execution failed:", error);
       toast.error("Execution went wrong");
     },
   });
@@ -45,7 +43,6 @@ const ExecuteButton = ({ workflowId }: { workflowId: string }) => {
         flowDefinition: JSON.stringify(flowObj),
       });
     } catch (error) {
-      console.error("Error in execute handler:", error);
       toast.error("Failed to prepare workflow execution");
     }
   };

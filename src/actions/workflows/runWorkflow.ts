@@ -1,5 +1,6 @@
 "use server";
 
+import { executeWorkFlow } from "@/lib/workflow/executeWorkFlow";
 import { flowExecutionPlan } from "@/lib/workflow/flowExecutionPlan";
 import { IWorkflowExecutionPlan } from "@/types/workflow";
 
@@ -27,5 +28,6 @@ export const RunWorkflow = async (form: {
   const executionPlan: IWorkflowExecutionPlan = result.executionPlan;
   console.log("Execution plan for workflow", workflowId, executionPlan);
 
+  executeWorkFlow(executionPlan);
   return executionPlan;
 };

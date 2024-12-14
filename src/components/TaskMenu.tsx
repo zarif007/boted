@@ -15,13 +15,20 @@ const TaskMenu = () => {
       <Accordion
         type="multiple"
         className="w-full"
-        defaultValue={["extraction"]}
+        defaultValue={["extraction", "interactions"]}
       >
         <AccordionItem value="extraction" className="border-0">
           <AccordionTrigger>Data extraction</AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuBtn taskType={taskType.PAGE_TO_HTML} />
             <TaskMenuBtn taskType={taskType.EXTRACT_TEXT_FROM_ELEMENT} />
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="interactions" className="border-0">
+          <AccordionTrigger>User Interactions</AccordionTrigger>
+          <AccordionContent className="flex flex-col gap-1">
+            <TaskMenuBtn taskType={taskType.FILL_INPUT} />
+            <TaskMenuBtn taskType={taskType.CLICK_ELEMENT} />
           </AccordionContent>
         </AccordionItem>
       </Accordion>

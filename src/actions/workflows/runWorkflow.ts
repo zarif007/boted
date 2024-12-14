@@ -26,8 +26,8 @@ export const RunWorkflow = async (form: {
   }
 
   const executionPlan: IWorkflowExecutionPlan = result.executionPlan;
-  console.log("Execution plan for workflow", workflowId, executionPlan);
+  console.log("Execution plan for workflow", workflowId);
 
-  executeWorkFlow(executionPlan);
+  executeWorkFlow(executionPlan, flow.edges);
   return executionPlan;
 };

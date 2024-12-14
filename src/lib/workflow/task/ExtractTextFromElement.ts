@@ -1,6 +1,6 @@
 import { taskParamType, taskType } from "@/types/task";
 
-export const ExtractTextFromElement = {
+export const ExtractTextFromElementTask = {
   type: taskType.EXTRACT_TEXT_FROM_ELEMENT,
   label: "Extract text from Element",
   isEntryPoint: false,
@@ -9,7 +9,7 @@ export const ExtractTextFromElement = {
       name: "Html",
       type: taskParamType.STRING,
       required: true,
-      variant: "textarea"
+      variant: "textarea",
     },
     {
       name: "Selector",

@@ -5,11 +5,14 @@ export const LaunchBrowserExecutor = async (
   environment: IExecutionEnvironment
 ): Promise<boolean> => {
   try {
-    const websiteUrl = environment.getInput("website url");
+    const websiteUrl = environment.getInput("Website Url");
     const browser = await puppeteer.launch({
-      headless: false, // Show the browser
+      headless: false, // false = Show the browser
     });
-    // await browser.close();
+    environment.setBrowser(browser);
+    const page = await browser.newPage();
+    await page.goto(websiteUrl);
+    environment.setPage(page);
     return true;
   } catch (error) {
     console.log("error", error);

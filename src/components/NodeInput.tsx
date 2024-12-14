@@ -15,6 +15,7 @@ const NodeInput = ({ input, nodeId }: { input: taskParam; nodeId: string }) => {
   const hasErrors = invalidInputs
     .find((node) => node.nodeId === nodeId)
     ?.inputs.find((invalidInput) => invalidInput === input.name);
+
   return (
     <div
       className={cn(

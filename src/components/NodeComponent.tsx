@@ -12,6 +12,7 @@ import NodeOutput from "./NodeOutput";
 const NodeComponent = memo((props: NodeProps) => {
   const nodeData = props.data as ICustomNodeData;
   const task = taskRegistry[nodeData.type];
+
   return (
     <NodeCard nodeId={props.id} isSelected={!!props.selected}>
       <NodeHeader taskType={nodeData.type} nodeId={props.id} />

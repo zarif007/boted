@@ -6,7 +6,7 @@ import { ColorForHandle } from "./common";
 
 const NodeOutput = ({ output }: { output: taskParam }) => {
   return (
-    <div className="flex justify-start relative p-3 bg-white dark:bg-black w-full">
+    <div className="flex justify-end relative p-3 bg-white dark:bg-black w-full">
       <p>{output.name}</p>
       {!output.hideHandle && (
         <Handle

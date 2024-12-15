@@ -13,7 +13,7 @@ export const FillInputExecutor = async (
     const value = environment.getInput("Value");
     const isRequired = environment.getInput("IsRequired");
 
-    const element = await environment.getPage()!.$(selector);
+    const element = await environment.getPage()!.$(selector as string);
     if (!element) {
       console.error("Element not found");
       return false;
@@ -41,8 +41,8 @@ export const FillInputExecutor = async (
       return false;
     }
 
-    await environment.getPage()!.type(selector, value);
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await environment.getPage()!.type(selector as string, value as string);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     return true;
   } catch (error) {

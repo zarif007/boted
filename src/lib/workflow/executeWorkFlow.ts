@@ -34,6 +34,7 @@ export const executeWorkFlow = async (
 
 const cleanUpEnv = async (environment: IEnvironment) => {
   if (environment.browser) {
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     await environment.browser.close().catch((err) => {
       console.log("Can not close", err);
     });
@@ -101,7 +102,7 @@ const createExecutionEnv = (
 ): IExecutionEnvironment => {
   return {
     getInput: (name: string) => environment.phases[node?.id]?.inputs[name],
-    setOutput: (name: string, value: string) => {
+    setOutput: (name: string, value: string | boolean) => {
       environment.phases[node.id].outputs[name] = value;
     },
     getBrowser: () => environment.browser ?? null,

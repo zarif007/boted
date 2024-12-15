@@ -5,14 +5,14 @@ export type IEnvironment = {
   page?: Page;
   phases: {
     [key: string]: {
-      inputs: Record<string, string>;
-      outputs: Record<string, string>;
+      inputs: Record<string, string | boolean>;
+      outputs: Record<string, string | boolean>;
     };
   };
 };
 
 export type IExecutionEnvironment = {
-  getInput(name: string): string;
+  getInput(name: string): string | boolean;
   setOutput(name: string, value: string): void;
 
   getBrowser(): Browser | null;

@@ -4,7 +4,7 @@ import { taskType } from "./task";
 
 export interface ICustomNodeData {
   type: taskType;
-  inputs: Record<string, string>;
+  inputs: Record<string, string | boolean>;
   [key: string]: any;
 }
 export interface ICustomNode extends Node {

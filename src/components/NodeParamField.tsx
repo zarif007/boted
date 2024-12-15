@@ -4,6 +4,7 @@ import StringParam from "./param/StringParam";
 import { useReactFlow } from "@xyflow/react";
 import { ICustomNode } from "@/types/customNode";
 import BrowserInstanceParam from "./param/BrowserInstanceParam";
+import BooleanParam from "./param/BooleanParam";
 
 const NodeParamField = ({
   input,
@@ -14,10 +15,22 @@ const NodeParamField = ({
 }) => {
   const { updateNodeData, getNode } = useReactFlow();
   const node = getNode(nodeId) as ICustomNode;
+
+  if (!node?.data.inputs?.[input.name]) {
+    if (input.type === taskParamType.BOOLEAN) {
+      if (node && node.data) {
+        if (!node.data.inputs) {
+          node.data.inputs = {};
+        }
+        node.data.inputs[input.name] = input.value ?? false;
+      }
+    }
+  }
+
   const value = node?.data.inputs?.[input.name];
 
   const updateNodeParamValue = useCallback(
-    (newValue: string) => {
+    (newValue: string | boolean) => {
       updateNodeData(nodeId, {
         inputs: {
           ...node?.data.inputs,
@@ -33,7 +46,15 @@ const NodeParamField = ({
       return (
         <StringParam
           input={input}
-          value={value}
+          value={value as string}
+          updateNodeParamValue={updateNodeParamValue}
+        />
+      );
+    case taskParamType.BOOLEAN:
+      return (
+        <BooleanParam
+          input={input}
+          value={value as boolean}
           updateNodeParamValue={updateNodeParamValue}
         />
       );
@@ -41,7 +62,7 @@ const NodeParamField = ({
       return (
         <BrowserInstanceParam
           input={input}
-          value={value}
+          value={value as string}
           updateNodeParamValue={updateNodeParamValue}
         />
       );

@@ -20,6 +20,13 @@ export const FillInputTask = {
       type: taskParamType.STRING,
       required: true,
     },
+    {
+      name: "IsRequired",
+      type: taskParamType.BOOLEAN,
+      value: false,
+      required: true,
+      variant: "switch",
+    },
   ],
   outputs: [{ name: "Web page", type: taskParamType.BROWSER_INSTANCE }],
 };

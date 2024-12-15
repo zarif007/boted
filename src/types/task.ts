@@ -10,6 +10,7 @@ export enum taskType {
 export enum taskParamType {
   STRING = "STRING",
   BROWSER_INSTANCE = "BROWSER_INSTANCE",
+  BOOLEAN = "BOOLEAN",
 }
 
 export interface taskParam {
@@ -18,6 +19,6 @@ export interface taskParam {
   helperText?: string;
   required?: boolean;
   hideHandle?: boolean;
-  value?: string;
+  value?: string | boolean;
   [key: string]: any;
 }

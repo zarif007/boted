@@ -67,6 +67,7 @@ export const flowExecutionPlan = (nodes: ICustomNode[], edges: Edge[]) => {
       if (invalidInputs.length) {
         const incomers = getIncomers(currentNode, nodes, edges);
         if (incomers.every((incomer) => planned.has(incomer.id))) {
+          console.log(currentNode, planned);
           toast.error("Invalid inputs");
           inputsWithErrors.push({
             nodeId: currentNode?.id ?? "",
@@ -109,7 +110,9 @@ const getInvalidInputs = (
 
   for (const input of inputs) {
     const inputValue = node.data.inputs[input.name];
-    const inputValueProvided = inputValue?.length > 0;
+    const inputValueProvided =
+      (typeof inputValue === "string" && inputValue?.length > 0) ||
+      typeof inputValue === "boolean";
 
     if (inputValueProvided) continue;
 

@@ -3,15 +3,16 @@ import { Label } from "../ui/Label";
 import { Input } from "../ui/Inputs";
 import { taskParam } from "@/types/task";
 import { Textarea } from "../ui/Textarea";
+import { Switch } from "../ui/Switch";
 
-const StringParam = ({
+const BooleanParam = ({
   input,
   value,
   updateNodeParamValue,
 }: {
   input: taskParam;
-  value: string;
-  updateNodeParamValue: (newValue: string) => void;
+  value: boolean;
+  updateNodeParamValue: (newValue: string | boolean) => void;
 }) => {
   const id = useId();
   const [internalValue, setInternalValue] = useState(value);
@@ -20,10 +21,10 @@ const StringParam = ({
     setInternalValue(value);
   }, [value]);
 
-  let Component: any = Input;
-  if (input.variant === "textarea") {
-    Component = Textarea;
-  }
+  const Component: any = Switch;
+  // if (input.variant === "textarea") {
+  //   Component = Textarea;
+  // }
 
   return (
     <div className="space-y-1 p-1 w-full">
@@ -34,10 +35,9 @@ const StringParam = ({
       <Component
         id={id}
         className="bg-white"
-        value={internalValue}
+        checked={internalValue}
         placeholder="Enter value here"
-        onChange={(e: any) => setInternalValue(e.target.value)}
-        onBlur={(e: any) => updateNodeParamValue(e.target.value)}
+        onCheckedChange={(e: boolean) => updateNodeParamValue(e)}
       />
       {input.helperText && (
         <p className="text-muted-foreground px-2">{input.helperText}</p>
@@ -46,4 +46,4 @@ const StringParam = ({
   );
 };
 
-export default StringParam;
+export default BooleanParam;

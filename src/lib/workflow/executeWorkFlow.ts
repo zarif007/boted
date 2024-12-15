@@ -18,9 +18,14 @@ export const executeWorkFlow = async (
   let executionFailed = false;
   for (const phase of executionPhases) {
     for (const node of phase.nodes) {
-      if (!(await executePhase(node, environment, edges))) {
+      const res = await executePhase(node, environment, edges);
+      if (!res) {
         executionFailed = true;
+        break;
       }
+    }
+    if (executionFailed) {
+      break;
     }
   }
 

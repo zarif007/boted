@@ -9,7 +9,7 @@ export const ClickElementExecutor = async (
       console.error("No Selector");
     }
 
-    await environment.getPage()!.click(selector);
+    await environment.getPage()!.click(selector as string);
     await new Promise((resolve) => setTimeout(resolve, 3000));
     return true;
   } catch (error) {

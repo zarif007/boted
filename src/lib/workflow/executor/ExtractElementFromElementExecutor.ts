@@ -19,9 +19,9 @@ export const ExtractElementFromElementExecutor = async (
       return false;
     }
 
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html as string);
 
-    const element = $(selector);
+    const element = $(selector as string);
 
     if (!element) {
       console.error("Element not find");

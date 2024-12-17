@@ -11,7 +11,7 @@ export const LaunchBrowserExecutor = async (
     });
     environment.setBrowser(browser);
     const page = await browser.newPage();
-    await page.goto(websiteUrl);
+    await page.goto(websiteUrl as string);
     environment.setPage(page);
     return true;
   } catch (error) {
